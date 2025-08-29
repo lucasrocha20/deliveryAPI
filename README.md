@@ -1,13 +1,18 @@
 # 🍕 Projeto Delivery (E-commerce Simplificado com IA e DevOps)
 
-## 🎯 Objetivo
-Criar um sistema backend em **Node.js** para simular um **plataforma de pedidos (delivery/e-commerce)**, explorando:
+## 1. Introdução e objetivos
+  Uma pizzaria precisa tem dificuldade de controlar pedidos junto ao estoque e acabam vendendo algo que não tem, causando transtorno e precisando cancelar o pedido do cliente final
+
+
+<!-- ## 1. Introdução e objetivos
+  Objetivo: Criar um sistema backend em **Node.js** para simular um **plataforma de pedidos (delivery/e-commerce)**, explorando:
 - Arquitetura de microsserviços
 - Padrões de mensageria com RabbitMQ
 - Proxy reverso e API Gateway com Nginx
 - Orquestração com Kubernetes
 - Monitoramento com Prometheus & Grafana
-- Integração com IA (recomendações e chatbot interno)
+- Integração com IA (recomendações e chatbot interno) -->
+
 
 ---
 
@@ -94,3 +99,34 @@ Este roadmap organiza os passos para construir o **sistema de Delivery/E-commerc
 - [ ] Implementar **CQRS** (separação de leitura/escrita em pedidos).
 - [ ] Criar **Frontend simples** (React ou Next.js).
 - [ ] Deploy em **nuvem (AWS/GCP/Azure)**.
+
+
+```mermaid
+sequenceDiagram
+    participant U as Usuário
+    participant API as API Pedidos
+    participant MQ as RabbitMQ
+    participant ST as API Estoque
+    participant PG as API Pagamentos
+    participant DB as PostgreSQL
+    participant AI as IA Recommender
+
+    U->>API: POST /pedidos
+    API->>DB: Salvar Pedido (status = Pendente)
+    API->>MQ: Publica evento PedidoCriado
+
+    MQ->>ST: Evento PedidoCriado
+    ST->>DB: Atualizar Estoque
+    ST-->>MQ: Evento EstoqueAtualizado
+
+    MQ->>PG: Evento PedidoCriado
+    PG->>DB: Registrar Pagamento (status = Processando)
+    PG-->>DB: Atualizar Pedido (status = Pago)
+
+    API->>AI: Solicitar recomendações
+    AI->>DB: Buscar histórico do usuário
+    AI->>AI: Calcular produtos sugeridos
+    AI-->>API: Retornar recomendações
+
+    API-->>U: Confirmação do Pedido + Sugestões de Produtos
+  ```

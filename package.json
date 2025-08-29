@@ -1,0 +1,37 @@
+{
+  "name": "deliveryapi",
+  "version": "1.0.0",
+  "description": "API para sistema de Delivery",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:prod": "node dist/main",
+    "dev": "ts-node src/server.ts",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage",
+    "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasrocha20/deliveryAPI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasrocha20/deliveryAPI/issues"
+  },
+  "homepage": "https://github.com/lucasrocha20/deliveryAPI#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "unplugin-swc": "^1.5.7",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  }
+}
