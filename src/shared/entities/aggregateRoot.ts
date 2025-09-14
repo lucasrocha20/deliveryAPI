@@ -1,4 +1,4 @@
-import { Entity } from '@/shared/entities/entity';
+import { Entity } from '../../shared/entities/entity';
 import { DomainEvent } from '../events/domainEvent';
 import { DomainEvents } from '../events/domainEvents';
 

@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:3000
+# @authToken = {{sessions.response.body.accessToken}}
+
+# @name hello
+GET {{baseUrl}}/
+Content-Type: application/json
+
+###
+
+# @name create
+POST {{baseUrl}}/create-account/client
+Content-Type: application/json
+
+{
+  "name": "Lucas Rocha",
+  "email": "lucas@teste.com",
+  "password": "123456",
+  "address": "Rua A, 12 3",
+  "phone": "1234567890"
+}
